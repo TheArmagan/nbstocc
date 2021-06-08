@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "nbs.js": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2"
+  }
+}
