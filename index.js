@@ -15,7 +15,7 @@ const path = require("path");
 function nbsToCCCode(song) {
   let result = [
     "-- Armagan's NBS to CC Speaker converter.",
-    `local s = peripheral.wrap("{{wrap}}")`,
+    `local s = peripheral.find("speaker")`,
   ];
 
   /** @type {NBS.Layer[]} */
@@ -55,10 +55,7 @@ app.get("/song/:songName", (req, res) => {
   let luaFilePath = path.resolve(outputFolder, `${songName}.lua`);
   if (fs.existsSync(luaFilePath)) {
     console.log("[EXIST]", luaFilePath)
-    res.send(
-      fs.readFileSync(luaFilePath, "utf-8")
-        .replace("{{wrap}}", req.query.wrap || "top")
-    )
+    res.send(fs.readFileSync(luaFilePath, "utf-8"))
     return;
   }
   let nbsFilePath = path.resolve(inputFolder, `${songName}.nbs`);
@@ -71,7 +68,7 @@ app.get("/song/:songName", (req, res) => {
   let song = NBS.loadSong(nbsFilePath);
   let luaCode = nbsToCCCode(song);
   song = 0;
-  res.send(luaCode.replace("{{wrap}}", req.query.wrap || "top"));
+  res.send(luaCode);
   fs.writeFileSync(luaFilePath, luaCode);
   luaCode = 0;
 })
@@ -79,6 +76,6 @@ app.get("/song/:songName", (req, res) => {
 app.listen(5252, () => {
   console.log(`NBS to CC Code by Kıraç Armağan Önal\n`);
   console.log("Example Code:")
-  console.log(`wget run http://localhost:5252/song/cancan?wrap=top\n`);
+  console.log(`wget run http://localhost:5252/song/cancan\n`);
 });
 
