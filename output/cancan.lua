@@ -1,5 +1,5 @@
 -- Armagan's NBS to CC Speaker converter.
-local s = peripheral.wrap("{{wrap}}")
+local s = peripheral.find("speaker")
 sleep(0.1)
 s.playNote("flute", 2, 5)
 s.playNote("bass", 2, 3)
