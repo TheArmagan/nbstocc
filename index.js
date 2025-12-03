@@ -73,9 +73,9 @@ app.get("/song/:songName", (req, res) => {
   luaCode = 0;
 })
 
-app.listen(5252, () => {
+app.listen(8080, () => {
   console.log(`NBS to CC Code by Kıraç Armağan Önal\n`);
   console.log("Example Code:")
-  console.log(`wget run http://localhost:5252/song/cancan\n`);
+  console.log(`wget run http://localhost:8080/song/cancan\n`);
 });
 
